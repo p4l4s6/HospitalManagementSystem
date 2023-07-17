@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Slot List</h3>
+
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                           <a href="{% url 'slot-add' %}">
+                               <button class="btn btn-info">Add Slot</button>
+                           </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for object in object_list %}
+                            <tr>
+                                <td>{{ object.id }}</td>
+                                <td>{{ object.start_time }}</td>
+                                <td>{{ object.end_time }}</td>
+                                <td>{{ object.is_active }}</td>
+                                <td>
+                                    <a href="{% url 'slot-update' object.id%}">
+                                        <button class="btn btn-warning">Edit</button>
+                                    </a>
+                                      <a href="{% url 'slot-delete' object.id %}">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+{% endblock %}
